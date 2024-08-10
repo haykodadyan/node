@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Real-time Data</title>
+</head>
+<body>
+    <h1>Real-time Data Generator Application</h1>
+    <ul id="dataList"></ul>
+    
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+        const socket = io();
+
+        socket.on('real-time data', (data) => {
+            const dataList = document.getElementById('dataList');
+            const listItem = document.createElement('li');
+            listItem.textContent = `Time: ${data.timestamp}`;
+            dataList.appendChild(listItem);
+        });
+    </script>
+</body>
+</html>
