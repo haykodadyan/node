@@ -12,4 +12,4 @@ function listRecursively(dir) {
     })
 }
 
-listRecursively('exampleDir')
+listRecursively('/Users/admin/Desktop/node')
