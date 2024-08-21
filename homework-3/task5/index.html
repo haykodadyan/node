@@ -4,19 +4,40 @@
     <title>Real-time Data</title>
 </head>
 <body>
-    <h1>Real-time Data Generator Application</h1>
-    <ul id="dataList"></ul>
+    <h1>Welcome to Real-Time application</h1>
+    <input id="nameInput" placeholder="Enter name">
+    <button id="helloButton">Say hello</button>
+    <ul id="messages"></ul>
     
     <script src="/socket.io/socket.io.js"></script>
     <script>
         const socket = io();
+        const messages = document.getElementById('messages')
 
-        socket.on('real-time data', (data) => {
-            const dataList = document.getElementById('dataList');
-            const listItem = document.createElement('li');
-            listItem.textContent = `Time: ${data.timestamp}`;
-            dataList.appendChild(listItem);
+        socket.on('welcome', (msg) => {
+            const h3 = document.createElement('h3')
+            h3.textContent = msg
+            messages.appendChild(h3)
+        })
+
+        socket.on('server-time', (data) => {
+            const li = document.createElement('li')
+            li.textContent = `Server time: ${data.timestamp}`
+            messages.appendChild(li)
         });
+
+        document.getElementById('helloButton').addEventListener('click', () => {
+            const name = document.getElementById('nameInput').value
+            if (name) {
+                socket.emit('say-hello', name)
+            }
+        })
+
+        socket.on('reply-to-hello', (msg) => {
+            const li = document.createElement('li')
+            li.textContent = msg
+            messages.appendChild(li)
+        })
     </script>
 </body>
 </html>

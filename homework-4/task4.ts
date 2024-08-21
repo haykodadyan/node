@@ -29,6 +29,6 @@ fetchData()
     .then((data: UserData)=> {
         console.log("Resolved data:", data);
     })
-    .catch((err: any) => {
+    .catch((err) => {
         console.error("Promise rejected:", err);
     })

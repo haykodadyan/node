@@ -5,11 +5,11 @@ enum UserRole {
 }
 
 function messageGeneratorByRole(role: UserRole): string {
-    if (role === 'USER') {
+    if (role === UserRole.User) {
         return "Welcome, User! You have limited access."
-    } else if (role === 'GUEST') {
+    } else if (role === UserRole.Guest) {
         return "Welcome, Guest! Sign up to see more."
-    } else if (role === 'ADMIN') {
+    } else if (role === UserRole.Admin) {
         return "Welcome, Admin! You have full access."
     } else {
         return "Role is unknown."

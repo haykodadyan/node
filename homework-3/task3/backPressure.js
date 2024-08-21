@@ -17,8 +17,16 @@ const writableStream = new Writable({
     }
 });
 
-readableStream.pipe(writableStream);
+function writeData() {
+    const chunk = readableStream.read();
+    if (chunk !== null) {
+        const canWrite = writableStream.write(chunk);
+        if (!canWrite) {
+            writableStream.once('drain', writeData);
+        } else {
+            process.nextTick(writeData);
+        }
+    }
+}
 
-writableStream.on('drain', () => {
-    console.log('Writable stream is drained, resuming readable stream.');
-});
+readableStream.on('readable', writeData)
