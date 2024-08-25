@@ -21,5 +21,5 @@ function printDirContent(dirPath: string, sizeOfSpace:string = '') {
     }
 }
 
-const dirPath = '/Users/admin/Desktop/node/homework-2';
+const dirPath = path.join(__dirname, 'example-folder');
 printDirContent(dirPath);
