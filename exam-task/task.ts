@@ -1,5 +1,5 @@
-import fs from 'fs';
-import path from 'path';
+const fs = require('fs')
+const path = require('path')
 
 function printDirContent(dirPath: string, sizeOfSpace:string = '') {
     if (!fs.existsSync(dirPath)) {
@@ -14,8 +14,7 @@ function printDirContent(dirPath: string, sizeOfSpace:string = '') {
         console.log(`${sizeOfSpace}Ⓓ ${path.basename(dirPath)}`);
         sizeOfSpace += '    '
         const content = fs.readdirSync(dirPath)
-        // @ts-ignore
-        content.forEach(item => {
+        content.forEach((item: string) => {
             const itemPath = path.join(dirPath, item);
             printDirContent(itemPath, sizeOfSpace)
         })
