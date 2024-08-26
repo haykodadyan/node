@@ -13,8 +13,8 @@ function printDirContent(dirPath: string, sizeOfSpace:string = '') {
     if (stats.isDirectory()) {
         console.log(`${sizeOfSpace}Ⓓ ${path.basename(dirPath)}`);
         sizeOfSpace += '    '
-        const content = fs.readdirSync(dirPath)
-        content.forEach((item: string) => {
+        const content: Array<string> = fs.readdirSync(dirPath)
+        content.forEach(item => {
             const itemPath = path.join(dirPath, item);
             printDirContent(itemPath, sizeOfSpace)
         })
