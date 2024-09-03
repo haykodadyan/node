@@ -32,3 +32,5 @@ build/
 
 # Coverage directory used by testing frameworks
 coverage/
+lib
+es
