@@ -1,0 +1,36 @@
+services:
+  app:
+    build: .
+    ports:
+      - "8080:8080"
+    environment:
+      DB_USER: postgres
+      DB_HOST: postgres_db  # Use the service name 'postgres_db' instead of 'localhost'
+      DB_NAME: postgres
+      DB_PASSWORD: hkedve012
+      DB_PORT: 5432
+    depends_on:
+      - postgres_db
+    volumes:
+      - .:/usr/src/app
+    networks:
+      - backend
+
+  postgres_db:
+    image: postgres:14-alpine
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: hkedve012
+      POSTGRES_DB: postgres
+    ports:
+      - "5433:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - backend
+
+networks:
+  backend:
+
+volumes:
+  postgres_data:

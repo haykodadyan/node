@@ -25,10 +25,9 @@ export const getDirector = async (req: Request, res: Response) => {
 };
 
 export const addDirector = async (req: Request, res: Response) => {
-  const { name, nationality, dob } = req.body;
 
   try {
-    const newDirector = await createDirector({ Name: name, Nationality: nationality, DOB: dob });
+    const newDirector = await createDirector(req.body);
     res.status(201).json(newDirector);
   } catch (error) {
     res.status(500).json({ message: 'Error creating director', error });
